@@ -10,6 +10,7 @@ interface State {
     frase: string,
     nomePlayer: string,
     toggleGameArea: boolean
+    isGameStarted: boolean
     timer: number
 }
 
@@ -22,11 +23,13 @@ export class Game extends Component<Props, State> {
         this.toggleGameArea = this.toggleGameArea.bind(this);
         this.changePlayerName = this.changePlayerName.bind(this);
         this.timerTick = this.timerTick.bind(this);
+        this.toggleGame = this.toggleGame.bind(this);
 
         this.state = {
             frase: "I think the only card she has is the Lorem card. I’m the best thing that ever happened to placeholder text. I'm speaking with myself, number one, because I have a very good brain and I've said a lot of things. Despite the constant negative ipsum covfefe.",
             nomePlayer: '',
             toggleGameArea: false,
+            isGameStarted: false,
             timer: 0
         };
     }
@@ -36,17 +39,18 @@ export class Game extends Component<Props, State> {
         this.setState({toggleGameArea: !this.state.toggleGameArea})
     }
 
+    toggleGame(){
+        this.setState({isGameStarted: !this.state.isGameStarted})
+    }
+
     changePlayerName (name: string) {
 
         this.setState({nomePlayer: name})
     }
 
     timerTick() {
-        if (this.state.toggleGameArea === true) {
+        if (this.state.isGameStarted === true) {
             this.setState({timer: this.state.timer + 1})
-        }
-        else {
-            this.setState({timer: 0})
         }
     }
 
@@ -64,6 +68,8 @@ export class Game extends Component<Props, State> {
                     toggle={this.state.toggleGameArea}
                     timer={this.state.timer}
                     tick={this.timerTick}
+                    gameStatus={this.state.isGameStarted}
+                    toggleGameStatus={this.toggleGame}
                 />
             </div>
         );

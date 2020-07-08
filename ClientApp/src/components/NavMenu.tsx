@@ -55,7 +55,7 @@ export class NavMenu extends Component<Props,State> {
                                     <NavLink tag={Link} className="text-dark" to="/ScoreBoard">Score Board</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/">GitHub</NavLink>
+                                    <NavLink className="text-dark" href="https://github.com/gbrlCM/TypeGameSPA">GitHub</NavLink>
                                 </NavItem>
                             </ul>
                         </Collapse>

@@ -1,61 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { Component } from 'react';
 
 interface Props {
     timer: number,
     tick: () => void
 }
 
-// export class Timer extends Component <Props,State> {
+export class Timer extends Component <Props> {
 
-//     timeID
+    timeID
 
-//     constructor(props) {
-//         super(props);
+    constructor(props) {
+        super(props);
 
-//         this.state = {time : 0}
-//     }
+        this.state = {time : 0}
+    }
 
-//     componentDidMount () {
+    componentDidMount () {
         
-//         this.timeID = setInterval(
-//             () => this.tick(), 1000
-//         );
-//     }
+        this.timeID = setInterval(
+            () => this.props.tick(), 1000
+        );
+    }
 
-//     componentWillUnmount () {
-//         clearInterval(this.timeID);
-//     }
+    componentWillUnmount () {
+        clearInterval(this.timeID);
+    }
 
-//     tick () {
-//         this.setState({time: this.state.time + 1})
-//     }
 
-//     render() {
+    render() {
 
-//         return (
-//         <p style={{
-//             fontSize: "20px",
-//             fontWeight: "bolder"
-//         }}>Timer: {this.state.time}</p>
-//         );
-//     }
-// }
-
-export const Timer: React.FC<Props> = (props: Props) => {
-
-    useEffect(() => {
-        const interval = setInterval(() => props.tick, 1000);
-        return () => clearInterval(interval);
-    },[props.tick])
-
-    return (
-        <div>
-            <p style={{
-                fontSize: "20px",
-                fontWeight: "bolder"
-            }}>
-                Timer: {props.timer}
-            </p>
-        </div>
-    );
+        return (
+        <p style={{
+            fontSize: "20px",
+            fontWeight: "bolder"
+        }}>Timer: {this.props.timer}</p>
+        );
+    }
 }
