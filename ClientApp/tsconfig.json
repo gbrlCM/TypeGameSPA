@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
+  },
+  "exclude": [
+    "node_modules",
+    "wwwroot"
+  ],
+  "include": [
+    "src", "oldStuff/teste.tsx", "oldStuff/Counter.js", "oldStuff/Layout.js", "oldStuff/FetchData.js", "oldStuff/Home.js", "oldStuff/NavMenu.js", "oldStuff/teste.js"
+  ]
+}
