@@ -1,4 +1,4 @@
-/// <reference path="../../oldstuff/navmenu.js" />
+// <reference path="../../oldstuff/navmenu.js" />
 import React, {Component} from 'react';
 import {
     Collapse,
