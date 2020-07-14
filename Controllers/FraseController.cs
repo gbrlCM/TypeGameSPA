@@ -21,15 +21,11 @@ namespace TypeGameSPA.Controllers
             this.context = context;
         }
 
-        public string Teste()
-        {
-            return context.Set<Frase>().Find(2).Senteca;
-        }
 
         public string RequestSetence()
         {
             var n = new Random();
-            return context.Set<Frase>().Find(n.Next(11)).Senteca;
+            return context.Set<Frase>().Find(n.Next(context.Set<Frase>().Count())).Senteca;
         }
     }
 }
