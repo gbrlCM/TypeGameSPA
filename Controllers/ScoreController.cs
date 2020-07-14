@@ -27,11 +27,10 @@ namespace TypeGameSPA.Controllers
             return data.ToArray();
         }
 
-        public string PostScore(string nome, int pontos)
+        public void PostScore(string nome, int pontos)
         {
             context.Set<Score>().Add(new Score(pontos, nome));
             context.SaveChanges();
-            return nome;
         }
     }
 }

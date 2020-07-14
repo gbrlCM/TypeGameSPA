@@ -47,7 +47,10 @@ export class Game extends Component<Props, State> {
     }
 
     async postResult (score){
-        await fetch(`Score/postScore?nome=${this.state.nomePlayer}&pontos=${score}`)
+        await fetch(`Score/postScore?nome=${this.state.nomePlayer}&pontos=${score}`, {
+            method: 'POST',
+            headers: new Headers()
+        })
     }
 
     toggleGameArea() {
