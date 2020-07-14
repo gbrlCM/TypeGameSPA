@@ -9,11 +9,14 @@ interface Props {
     gameStatus: boolean
     toggleGameStatus: () => void
     tick: () => void
+    postResult: (score: number) => void
 }
 
 export const GameTextField :React.FC<Props> = (props :Props) => {
 
     const [isRight, toggleRight] = useState(false);
+    const [disable, toggleDisable] = useState(false);
+    const scoreSentence = () => `Parabéns seu score foi ${Math.round((100 * props.frase.length)/props.timer)}`
 
     return (
         <div>
@@ -32,7 +35,7 @@ export const GameTextField :React.FC<Props> = (props :Props) => {
                                     margin: "10px"
                                 }
                             }
-                        >{props.frase}</CardText>
+                        >{!disable ? props.frase : scoreSentence()}</CardText>
                         <Input
                             type="textarea"
                             autoFocus={true}
@@ -43,6 +46,8 @@ export const GameTextField :React.FC<Props> = (props :Props) => {
                     
                                 if (event.target.value === props.frase) {
                                     props.toggleGameStatus();
+                                    toggleDisable(!disable);
+                                    props.postResult(Math.round((100 * props.frase.length)/props.timer));
                                 }
 
                                 if (event.target.value === props.frase.substr(0,event.target.value.length)){
@@ -56,9 +61,9 @@ export const GameTextField :React.FC<Props> = (props :Props) => {
                                 resize: "none",
                                 height: "400px",
                                 borderColor: isRight ? "green" : "red"
-
                             }}
                             placeholder="Digite Aqui o texto para iniciar o jogo"
+                            disabled={disable}
                         />
                     </CardBody>
 

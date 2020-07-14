@@ -24,9 +24,10 @@ export class Game extends Component<Props, State> {
         this.changePlayerName = this.changePlayerName.bind(this);
         this.timerTick = this.timerTick.bind(this);
         this.toggleGame = this.toggleGame.bind(this);
+        this.postResult = this.postResult.bind(this);
 
         this.state = {
-            frase: "I think the only card she has is the Lorem card. I’m the best thing that ever happened to placeholder text. I'm speaking with myself, number one, because I have a very good brain and I've said a lot of things. Despite the constant negative ipsum covfefe.",
+            frase: "",
             nomePlayer: '',
             toggleGameArea: false,
             isGameStarted: false,
@@ -34,13 +35,28 @@ export class Game extends Component<Props, State> {
         };
     }
 
+    componentDidMount(){
+        this.getSetence();
+    }
+
+    async getSetence (){
+        const response = await fetch('Frase/RequestSetence');
+        const data = await response.text()
+        console.log(data);
+        this.setState({frase: data})
+    }
+
+    async postResult (score){
+        await fetch(`Score/postScore?nome=${this.state.nomePlayer}&pontos=${score}`)
+    }
+
     toggleGameArea() {
 
         this.setState({toggleGameArea: !this.state.toggleGameArea})
     }
 
-    toggleGame(){
-        this.setState({isGameStarted: !this.state.isGameStarted})
+   toggleGame(){
+        this.setState({isGameStarted: !this.state.isGameStarted});
     }
 
     changePlayerName (name: string) {
@@ -70,6 +86,7 @@ export class Game extends Component<Props, State> {
                     tick={this.timerTick}
                     gameStatus={this.state.isGameStarted}
                     toggleGameStatus={this.toggleGame}
+                    postResult={this.postResult}
                 />
             </div>
         );
