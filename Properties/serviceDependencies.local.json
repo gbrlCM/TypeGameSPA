@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "type": "mssql.local",
+      "connectionId": "Server=localhost;Database=master;Trusted_Connection=True;",
+      "secretStore": "LocalSecretsFile"
+    }
+  }
+}

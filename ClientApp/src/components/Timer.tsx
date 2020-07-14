@@ -1,16 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 interface Props {
-
+    timer: number,
+    tick: () => void
 }
 
-interface State {
-
-    time: number
-}
-
-
-export class Timer extends Component <Props,State> {
+export class Timer extends Component <Props> {
 
     timeID
 
@@ -23,7 +18,7 @@ export class Timer extends Component <Props,State> {
     componentDidMount () {
         
         this.timeID = setInterval(
-            () => this.tick(), 1000
+            () => this.props.tick(), 1000
         );
     }
 
@@ -31,14 +26,14 @@ export class Timer extends Component <Props,State> {
         clearInterval(this.timeID);
     }
 
-    tick () {
-        this.setState({time: this.state.time + 1})
-    }
 
     render() {
 
         return (
-        <p className="timer-Stamp">{this.state.time}</p>
+        <p style={{
+            fontSize: "20px",
+            fontWeight: "bolder"
+        }}>Timer: {this.props.timer}</p>
         );
     }
 }
