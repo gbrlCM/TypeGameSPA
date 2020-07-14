@@ -25,6 +25,8 @@ export class Game extends Component<Props, State> {
         this.timerTick = this.timerTick.bind(this);
         this.toggleGame = this.toggleGame.bind(this);
         this.postResult = this.postResult.bind(this);
+        this.newGame = this.newGame.bind(this);
+        this.restart = this.restart.bind(this);
 
         this.state = {
             frase: "",
@@ -73,6 +75,25 @@ export class Game extends Component<Props, State> {
         }
     }
 
+    async newGame (localChanges: () => void) {
+        this.setState({
+            isGameStarted: false,
+            toggleGameArea:false,
+            nomePlayer: '',
+            timer: 0
+        })
+        localChanges();
+        await this.getSetence();
+    }
+
+    restart(localChanges: () => void) {
+        localChanges();
+        this.setState({
+            isGameStarted: false,
+            timer: 0
+        })
+    }
+
     render() {
         return (
             <div>
@@ -90,6 +111,8 @@ export class Game extends Component<Props, State> {
                     gameStatus={this.state.isGameStarted}
                     toggleGameStatus={this.toggleGame}
                     postResult={this.postResult}
+                    newGame = {this.newGame}
+                    restart = {this.restart}
                 />
             </div>
         );
